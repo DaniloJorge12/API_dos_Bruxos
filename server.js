@@ -1,7 +1,9 @@
 import express from "express";
+import dados from "./src/data/dados.js";
 import bruxos from "./src/data/bruxos.js";
 
-const app = express();
+const { varinhas, animais, pocoes } = dados;
+const app = express()
 
 app.get("/", (req, res) => {
     res.send(`
@@ -80,6 +82,18 @@ app.get("/bruxos/casa/:casa", (req, res) => {
           mensagem: "Nenhum bruxo encontrado nessa casa!"
       })
   }
+});
+
+app.get("/varinhas", (req, res) => {
+  res.json(varinhas);
+});
+
+app.get("/animais", (req, res) => {
+  res.json(animais);
+});
+
+app.get("/pocoes", (req, res) => {
+  res.json(pocoes);
 });
 
 app.listen(3000, () => {
